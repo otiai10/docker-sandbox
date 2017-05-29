@@ -27,6 +27,13 @@ RUN wget https://github.com/samtools/samtools/releases/download/1.4.1/samtools-1
     make && make install && \
     mv samtools /bin/
 
+# pip
+RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+RUN python get-pip.py
+
+# filtertool
+RUN pip install scipy git+https://github.com/otiai10/filtertool.git
+
 ADD ./main.sh /bin/
 
 ENTRYPOINT /bin/main.sh
